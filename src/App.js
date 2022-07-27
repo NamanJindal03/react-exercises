@@ -1,24 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from 'react'
+import Child1 from './Child1';
+import Child2 from './Child2';
 
 function App() {
+  /* lifting the state of child 1 to the common ancestor i.e App */
+  const [name, setName] = useState('Parent');
+
+  function getName(tempName) {
+    console.log(tempName)
+    setName(tempName);
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div>{name}</div>
+      <Child1 getName={getName}/>
+      {/* <Child2 count={count}/> */}
+    </>
   );
 }
 
