@@ -1,27 +1,32 @@
 import React, {useState} from 'react'
-
+import Child from './Child'
+let count2 = 0;
 function App() {
-  const[count, setCount] =useState(0); 
+  let[count, setCount] =useState(0); 
   //const[name, setCount2] =useState('naman'); 
-  
-  
-  // function updateCount(cn){
+  function updateCount(cn){
     
-  //   count2 = cn +1;
-  //   console.log(count2);
-  // }
+    count2 = cn +1;
+    console.log(count2);
+  }
   // const abcd = () =>{
     
   // }
-
+  console.log('def');
+  function printSomething(vr){
+    console.log(vr)
+  }
   return (
     <>
     {console.log('abcd')}
-      <div>
+      <div style={{display:'flex', justifyContent:'space-around'}}>
         <span>{count}</span>
+        <span>{count2}</span>
       </div>
-      <button onClick={()=>setCount(count+1)}>increase counter</button>
-      {/* <button onClick={()=> updateCount(count2)}>increase counter no</button> */}
+      <button onClick={()=>count = count+1}>increase counter</button>
+      {/* <Child /> */}
+      <button onClick={()=> updateCount(count2)}>increase count without state</button>
+
       <button onClick={()=>{
         if(count>0){
           setCount(count -1)
@@ -30,9 +35,9 @@ function App() {
         decrease counter
       </button>
       <button onClick={()=>{setCount(0)}}>Reset Counter</button>
+      <Child printSomething={printSomething}/>
     </>
   );
 }
 
 export default App;
-
