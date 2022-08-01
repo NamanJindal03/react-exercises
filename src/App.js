@@ -1,24 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useEffect, useState} from 'react';
+import 'bootstrap/dist/css/bootstrap.css';
+import { Container, Row, Col } from 'reactstrap';
+import Axios from 'axios'
+import CustomCard from './CustomCard';
 
 function App() {
+
+  const [apiData, setApiData] = useState([]);
+
+  const fetchApiDetails = async () =>{
+    const {data} = await Axios.get('https://fakestoreapi.com/products');
+    setApiData(prevState => [...prevState, data[0]])
+  }
+
+  useEffect(()=>{
+    fetchApiDetails();
+  }, [])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container>
+      <Row>
+        <Col  md={4} className="offset-md-4" > 
+          {/* custom component */}
+          {apiData.length > 0 ? <CustomCard apiData={apiData[0]}/> : 'Loader' }
+        </Col>
+      </Row>
+    </Container>
   );
 }
 
