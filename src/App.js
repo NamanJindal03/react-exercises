@@ -1,24 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
-
+import React, {useState} from "react";
+import Child from "./Child";
+import Child1 from "./Child1";
+import MyContext from './context';
+import Provider from "./provider";
 function App() {
+  const [bool, setBool] = useState(false)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      {/* <Child bool={bool} className='always'/>
+      <button onClick={() => setBool(!bool)}>Change Bool</button> */}
+      <Provider>
+        
+        <Child1  /> 
+      </Provider>
+    </>
   );
 }
 
