@@ -1,24 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
-
+import React, { useState } from "react";
+import Counter from "./Counter";
+import { ThemeContext } from "./context/ThemeContext";
 function App() {
+  const [color, setColor] = useState('light');
+
+  const changeThemeColor = () => {
+    if(color === 'light'){
+      setColor('dark')
+      return
+    }
+    setColor('light')
+  }
+/* Light Mode, Dark Mode */
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <ThemeContext.Provider value={{theme: color}}>
+        <Counter />
+      </ThemeContext.Provider>
+      <button onClick={()=> changeThemeColor()}>Change Theme</button>
+    </>
   );
 }
 
